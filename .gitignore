@@ -1,0 +1,16 @@
+# Local checkouts and reverse-engineering tools are not part of this mod.
+/references/
+/.tools/
+/inspect_assets.py
+/probe_assets.py
+
+# Build outputs and machine-specific IDE files.
+/dist/
+/bin/
+/obj/
+/.vs/
+*.csproj.user
+*.suo
+*.user
+__pycache__/
+*.pyc

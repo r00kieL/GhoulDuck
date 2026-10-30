@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>GhoulDuck</AssemblyName>
+    <RootNamespace>GhoulDuck</RootNamespace>
+    <DuckovPath Condition="'$(DuckovPath)' == ''">$(DUCKOV_PATH)</DuckovPath>
+    <HarmonyPath Condition="'$(HarmonyPath)' == ''">$(HARMONY_PATH)</HarmonyPath>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+    <Reference Include="TeamSoda.Duckov.Core"><HintPath>$(DuckovPath)\Duckov_Data\Managed\TeamSoda.Duckov.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="TeamSoda.Duckov.Utilities"><HintPath>$(DuckovPath)\Duckov_Data\Managed\TeamSoda.Duckov.Utilities.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ItemStatsSystem"><HintPath>$(DuckovPath)\Duckov_Data\Managed\ItemStatsSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SodaLocalization"><HintPath>$(DuckovPath)\Duckov_Data\Managed\SodaLocalization.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(HarmonyPath)</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="ValidateGameReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(DuckovPath)\Duckov_Data\Managed\TeamSoda.Duckov.Core.dll')" Text="Set DuckovPath or DUCKOV_PATH to the game installation directory." />
+    <Error Condition="!Exists('$(HarmonyPath)')" Text="Set HarmonyPath or HARMONY_PATH to 0Harmony.dll." />
+  </Target>
+</Project>
