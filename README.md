@@ -4,7 +4,7 @@
 
 ## 设置
 
-启用 [Duckov Mod Settings](https://steamcommunity.com/sharedfiles/filedetails/?id=3789464208) 及其所需的 [Harmony 前置](https://steamcommunity.com/sharedfiles/filedetails/?id=3589088839)，在游戏设置的「模组设置」页面选择「食尸体鬼鸭」。可以开启“吃掉后清除剩余战利品”，使剩余物品消失；也可以调整生命、黄色能量和水分的恢复量。数值范围为 0 至 10000，实际恢复不会超过角色属性上限。设置页支持主菜单和游戏内设置入口。
+启用 [Duckov Mod Settings](https://steamcommunity.com/sharedfiles/filedetails/?id=3789464208) 及其所需的 [Harmony 前置](https://steamcommunity.com/sharedfiles/filedetails/?id=3589088839)，在游戏设置的「模组设置」页面选择「食尸鬼鸭」。可以开启“吃掉后清除剩余战利品”，使剩余物品消失；也可以调整生命、黄色能量和水分的恢复量。数值范围为 0 至 10000，实际恢复不会超过角色属性上限。设置页支持主菜单和游戏内设置入口。
 
 展开“可食用的敌人类型”可以选择哪些敌人的死亡盒子显示“吃”。默认只勾选拾荒者（包括暴走和雪地拾荒者），其余类型默认关闭；Boss 优先按 Boss 分类。设置修改后会更新当前关卡中已识别的盒子。敌人通过游戏预设名称和 Boss 标记识别，暂未识别的敌人不会显示“吃”。
 

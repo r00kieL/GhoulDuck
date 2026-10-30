@@ -199,7 +199,7 @@ namespace GhoulDuck
         private static readonly FieldInfo CharacterIconType = AccessTools.Field(typeof(CharacterRandomPreset), "characterIconType");
         private readonly List<CorpseMarker> corpses = new List<CorpseMarker>();
         internal static ModBehaviour Instance;
-        [SerializeField, InspectorName("烤鸭大餐")]
+        [SerializeField, InspectorName("食尸鬼鸭")]
         private Settings settings = new Settings();
         private string ConfigPath { get { return Path.Combine(Application.persistentDataPath, "GhoulDuck.json"); } }
 
