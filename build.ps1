@@ -57,8 +57,17 @@ if (Test-Path -LiteralPath $infoPath) {
         }
     }
 }
-Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'package\info.ini') -Destination $infoPath -Force
-if ($publishedId) { Add-Content -LiteralPath $infoPath -Value "publishedFileId=$publishedId" -Encoding UTF8 }
+$template = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'package\info.ini') -Raw
+if ($publishedId) {
+    $idPattern = [regex]::new('(?m)^[ \t]*publishedFileId[ \t]*=[^\r\n]*')
+    if ($idPattern.Matches($template).Count -gt 1) { throw 'The source info.ini contains duplicate publishedFileId entries.' }
+    if ($idPattern.IsMatch($template)) {
+        $template = $idPattern.Replace($template, "publishedFileId=$publishedId", 1)
+    } else {
+        $template = $template.TrimEnd("`r", "`n") + "`n" + "publishedFileId=$publishedId`n"
+    }
+}
+[System.IO.File]::WriteAllText($infoPath, $template, [System.Text.UTF8Encoding]::new($false))
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'package\Harmony-LICENSE.txt') -Destination (Join-Path $outDir 'Harmony-LICENSE.txt') -Force
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'LICENSE') -Destination (Join-Path $outDir 'LICENSE') -Force
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'images\preview.png') -Destination (Join-Path $outDir 'preview.png') -Force

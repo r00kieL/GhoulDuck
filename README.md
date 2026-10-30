@@ -26,7 +26,7 @@ Duckov Mod Settings 负责保存设置。旧版的 `Application.persistentDataPa
 
 ## 发布准备
 
-GitHub 仓库应提交源码、构建脚本、`package`、`images/preview.png` 和测试。`.gitignore` 排除了游戏反编译参考资料、下载的参考仓库、本地工具和构建产物；这些资料不会随源码发布。创意工坊使用 `dist/GhoulDuck`，游戏首次上传后可能会在对应 `info.ini` 中写入 `publishedFileId`，请保留它用于后续更新。
+GitHub 仓库应提交源码、构建脚本、`package`、`images/preview.png` 和测试。`.gitignore` 排除了游戏反编译参考资料、下载的参考仓库、本地工具和构建产物；这些资料不会随源码发布。`package/info.ini` 中的 `publishedFileId` 指向本项目的创意工坊作品；构建时会优先保留发布目录已有的 ID。若基于本项目发布自己的独立作品，请在上传前移除或替换该 ID，避免误指向原作品。
 
 设置页面由 Duckov Mod Settings 提供；缺少该模组时仍可按默认或旧配置使用，但无法通过统一页面调整设置。发布时需要注明所需设置模组、其 Harmony 前置；封面是否适合公开发布由提供者确认。
 
