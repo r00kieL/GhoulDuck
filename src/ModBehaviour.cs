@@ -194,6 +194,8 @@ namespace GhoulDuck
     public sealed class ModBehaviour : Duckov.Modding.ModBehaviour
     {
         private Harmony harmony;
+        private bool settingsGridPatched;
+        private float nextSettingsGridCheck;
         internal static int DeathDepth;
         internal static EnemyType CurrentEnemyType;
         private static readonly FieldInfo CharacterIconType = AccessTools.Field(typeof(CharacterRandomPreset), "characterIconType");
@@ -253,6 +255,31 @@ namespace GhoulDuck
             LocalizationManager.SetOverrideText("GhoulDuck_Interact_Eat", "吃");
         }
         private void OnLanguageChanged(SystemLanguage language) { SetInteractionText(); }
+        private void Update()
+        {
+            if (settingsGridPatched || harmony == null || Time.unscaledTime < nextSettingsGridCheck) return;
+            nextSettingsGridCheck = Time.unscaledTime + 2f;
+            var pageType = AccessTools.TypeByName("SlimeNull.DuckovModSettings.UI.SettingsPage");
+            if (pageType == null) return;
+            var renderNode = AccessTools.Method(pageType, "RenderNode");
+            var postfix = AccessTools.Method(typeof(SettingsGridPatch), "RenderNodePostfix");
+            if (renderNode == null || postfix == null)
+            {
+                settingsGridPatched = true;
+                Debug.LogWarning("[GhoulDuck] 设置模组界面不兼容网格布局，保留原有列表。");
+                return;
+            }
+            try
+            {
+                harmony.Patch(renderNode, postfix: new HarmonyMethod(postfix));
+                settingsGridPatched = true;
+            }
+            catch (Exception e)
+            {
+                settingsGridPatched = true;
+                Debug.LogWarning("[GhoulDuck] 网格布局初始化失败，保留原有列表：" + e.Message);
+            }
+        }
         private void OnDestroy()
         {
             LocalizationManager.OnSetLanguage -= OnLanguageChanged;

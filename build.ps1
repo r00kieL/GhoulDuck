@@ -35,7 +35,7 @@ if ([string]::IsNullOrWhiteSpace($Compiler) -or !(Test-Path $Compiler)) {
 
 $outDir = Join-Path $PSScriptRoot 'dist\GhoulDuck'
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-$refs = @('mscorlib.dll','netstandard.dll','System.dll','System.Core.dll','UnityEngine.dll','UnityEngine.CoreModule.dll','UnityEngine.IMGUIModule.dll','UnityEngine.InputLegacyModule.dll','UnityEngine.TextRenderingModule.dll','UnityEngine.JSONSerializeModule.dll','UnityEngine.PhysicsModule.dll','Unity.InputSystem.dll','TeamSoda.Duckov.Core.dll','TeamSoda.Duckov.Utilities.dll','ItemStatsSystem.dll','Cysharp.Threading.Tasks.dll','SodaLocalization.dll')
+$refs = @('mscorlib.dll','netstandard.dll','System.dll','System.Core.dll','UnityEngine.dll','UnityEngine.CoreModule.dll','UnityEngine.IMGUIModule.dll','UnityEngine.InputLegacyModule.dll','UnityEngine.TextRenderingModule.dll','UnityEngine.JSONSerializeModule.dll','UnityEngine.PhysicsModule.dll','UnityEngine.UI.dll','UnityEngine.UIModule.dll','Unity.InputSystem.dll','TeamSoda.Duckov.Core.dll','TeamSoda.Duckov.Utilities.dll','ItemStatsSystem.dll','Cysharp.Threading.Tasks.dll','SodaLocalization.dll')
 $compilerArgs = @('/nologo','/target:library','/nostdlib+','/langversion:latest','/utf8output',('/out:' + (Join-Path $outDir 'GhoulDuck.dll')))
 foreach ($name in $refs) {
     $path = Join-Path $managed $name
