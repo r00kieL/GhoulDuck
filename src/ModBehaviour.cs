@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Duckov;
+using FMOD.Studio;
 using HarmonyLib;
 using ItemStatsSystem;
 using ItemStatsSystem.Items;
@@ -80,12 +82,32 @@ namespace GhoulDuck
     // They must not create an extra collider or a second world marker.
     public sealed class EatInteraction : InteractableBase
     {
+        private const string EatSound = "SFX/Item/use_food";
+        private EventInstance? eatSoundInstance;
         internal CorpseMarker Owner;
         protected override void Awake() { }
         protected override void Start() { }
         protected override bool IsInteractable()
         {
             return Owner && !Owner.Consumed && Owner.Box;
+        }
+        protected override void OnInteractStart(CharacterMainControl character)
+        {
+            try { eatSoundInstance = AudioManager.Post(EatSound, character.gameObject); }
+            catch (Exception e) { Debug.LogWarning("[GhoulDuck] 无法播放进食音效：" + e.Message); }
+        }
+        protected override void OnInteractStop() { StopEatSound(); }
+        private void OnDisable() { StopEatSound(); }
+        protected override void OnDestroy()
+        {
+            StopEatSound();
+            base.OnDestroy();
+        }
+        private void StopEatSound()
+        {
+            if (!eatSoundInstance.HasValue) return;
+            eatSoundInstance.Value.stop(STOP_MODE.ALLOWFADEOUT);
+            eatSoundInstance = null;
         }
         protected override void OnInteractFinished()
         {

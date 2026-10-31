@@ -1,6 +1,6 @@
 # 食尸鬼鸭（GhoulDuck）
 
-启动后，靠近敌人死亡时掉落的战利品盒后会新增”吃“的选项，在原生交互菜单中用滚轮选择“吃”，再按游戏交互键食用。选项顺序为“战利品 → 吃 → 搬起”。食用需要 1.5 秒，进度由游戏原生进度条显示，可以用游戏的取消动作键中断；中断不会消耗盒子或恢复属性。默认允许直接食用未清空的盒子，剩余战利品散落在原地；每次恢复 30 点能量。
+启动后，靠近敌人死亡时掉落的战利品盒后会新增”吃“的选项，在原生交互菜单中用滚轮选择“吃”，再按游戏交互键食用。选项顺序为“战利品 → 吃 → 搬起”。食用需要 1.5 秒，进度由游戏原生进度条显示，并播放游戏原生进食音效；可以用游戏的取消动作键中断，中断不会消耗盒子或恢复属性。默认允许直接食用未清空的盒子，剩余战利品散落在原地；每次恢复 30 点能量。
 
 ## 设置
 
@@ -20,7 +20,7 @@ Duckov Mod Settings 负责保存设置。旧版的 `Application.persistentDataPa
 
 也可以设置环境变量 `DUCKOV_PATH` 和 `HARMONY_PATH`；如果游戏通过 Steam 安装，省略 `-HarmonyPath` 时脚本会尝试查找已订阅的 Harmony 前置。脚本通过 Visual Studio Installer 自动查找 C# 编译器，也可用 `-Compiler` 或 `CSC_PATH` 指定。游戏 DLL 仅用于编译，不包含在发布包中。
 
-构建结果位于 `dist/GhoulDuck`，包含模组 DLL、封面、元数据、本项目的 MIT 许可证，以及 Harmony DLL 和其 MIT 许可证。封面和元数据源文件分别位于 `images/preview.png`、`package/info.ini`；构建时会自动复制到发布目录。手动安装时将 `dist/GhoulDuck` 文件夹放入游戏的 `Duckov_Data/Mods`。
+构建结果位于 `dist/GhoulDuck`，包含模组 DLL、封面、元数据、本项目的 MIT 许可证，以及 Harmony DLL 和其 MIT 许可证；同时生成 `dist/GhoulDuck.zip`。封面和元数据源文件分别位于 `images/preview.png`、`package/info.ini`；构建时会自动复制到发布目录。手动安装时将 `dist/GhoulDuck` 文件夹放入游戏的 `Duckov_Data/Mods`。
 
 执行 `./tests/run-tests.ps1` 可检查敌人分类；该检查不代替游戏内测试。
 

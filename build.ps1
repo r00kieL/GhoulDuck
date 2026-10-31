@@ -35,7 +35,7 @@ if ([string]::IsNullOrWhiteSpace($Compiler) -or !(Test-Path $Compiler)) {
 
 $outDir = Join-Path $PSScriptRoot 'dist\GhoulDuck'
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-$refs = @('mscorlib.dll','netstandard.dll','System.dll','System.Core.dll','UnityEngine.dll','UnityEngine.CoreModule.dll','UnityEngine.IMGUIModule.dll','UnityEngine.InputLegacyModule.dll','UnityEngine.TextRenderingModule.dll','UnityEngine.JSONSerializeModule.dll','UnityEngine.PhysicsModule.dll','UnityEngine.UI.dll','UnityEngine.UIModule.dll','Unity.InputSystem.dll','TeamSoda.Duckov.Core.dll','TeamSoda.Duckov.Utilities.dll','ItemStatsSystem.dll','Cysharp.Threading.Tasks.dll','SodaLocalization.dll')
+$refs = @('mscorlib.dll','netstandard.dll','System.dll','System.Core.dll','UnityEngine.dll','UnityEngine.CoreModule.dll','UnityEngine.IMGUIModule.dll','UnityEngine.InputLegacyModule.dll','UnityEngine.TextRenderingModule.dll','UnityEngine.JSONSerializeModule.dll','UnityEngine.PhysicsModule.dll','UnityEngine.UI.dll','UnityEngine.UIModule.dll','Unity.InputSystem.dll','TeamSoda.Duckov.Core.dll','TeamSoda.Duckov.Utilities.dll','ItemStatsSystem.dll','Cysharp.Threading.Tasks.dll','SodaLocalization.dll','FMODUnity.dll')
 $compilerArgs = @('/nologo','/target:library','/nostdlib+','/langversion:latest','/utf8output',('/out:' + (Join-Path $outDir 'GhoulDuck.dll')))
 foreach ($name in $refs) {
     $path = Join-Path $managed $name
@@ -71,4 +71,7 @@ if ($publishedId) {
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'package\Harmony-LICENSE.txt') -Destination (Join-Path $outDir 'Harmony-LICENSE.txt') -Force
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'LICENSE') -Destination (Join-Path $outDir 'LICENSE') -Force
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'images\preview.png') -Destination (Join-Path $outDir 'preview.png') -Force
+$zipPath = Join-Path $PSScriptRoot 'dist\GhoulDuck.zip'
+Compress-Archive -LiteralPath $outDir -DestinationPath $zipPath -Force
 Write-Host "Built $outDir"
+Write-Host "Packaged $zipPath"

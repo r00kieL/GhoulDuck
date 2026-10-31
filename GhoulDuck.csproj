@@ -14,6 +14,7 @@
     <Reference Include="TeamSoda.Duckov.Utilities"><HintPath>$(DuckovPath)\Duckov_Data\Managed\TeamSoda.Duckov.Utilities.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="ItemStatsSystem"><HintPath>$(DuckovPath)\Duckov_Data\Managed\ItemStatsSystem.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="SodaLocalization"><HintPath>$(DuckovPath)\Duckov_Data\Managed\SodaLocalization.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="FMODUnity"><HintPath>$(DuckovPath)\Duckov_Data\Managed\FMODUnity.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(DuckovPath)\Duckov_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
